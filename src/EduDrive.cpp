@@ -253,7 +253,6 @@ namespace edu
         _mc[2]->setRPM(wback);
 
         if (_verbosity) {
-          //std::cout << "#EduDrive Setting RPM for drive" << i << " to " << w[0] << " " << w[1] << std::endl;
           RCLCPP_INFO_STREAM(this->get_logger(), "#EduDrive Setting RPM for drive" << 0 << " to " << wfront[0] << " " << wfront[1]);
           RCLCPP_INFO_STREAM(this->get_logger(), "#EduDrive Setting RPM for drive" << 1 << " to " << wmiddle[0] << " " << wmiddle[1]);
           RCLCPP_INFO_STREAM(this->get_logger(), "#EduDrive Setting RPM for drive" << 2 << " to " << wback[0] << " " << wback[1]);
