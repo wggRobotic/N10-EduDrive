@@ -41,6 +41,7 @@ namespace edu
         
         _subJoy     = this->create_subscription<sensor_msgs::msg::Joy>("joy", 1, std::bind(&EduDrive::joyCallback, this, std::placeholders::_1));
         _subVel     = this->create_subscription<geometry_msgs::msg::Twist>("vel/teleop", 10, std::bind(&EduDrive::velocityCallback, this, std::placeholders::_1));
+        _subMotorVel= this->create_subscription<std_msgs::msg::Float32MultiArray>("/n10/motor_vel", 10, std::bind(&EduDrive::controlMotorsIndividually, this, std::placeholders::_1));
         _srvEnable  = this->create_service<std_srvs::srv::SetBool>("enable", std::bind(&EduDrive::enableCallback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 
         // Publisher of motor shields
@@ -230,10 +231,35 @@ namespace edu
             w[0] *= 60.f / (2.f * M_PI);
             w[1] *= 60.f / (2.f * M_PI);
             _mc[i]->setRPM(w);
+            
             if (_verbosity)
                 //std::cout << "#EduDrive Setting RPM for drive" << i << " to " << w[0] << " " << w[1] << std::endl;
                 RCLCPP_INFO_STREAM(this->get_logger(), "#EduDrive Setting RPM for drive" << i << " to " << w[0] << " " << w[1]);
         }
+    }
+
+    void EduDrive::controlMotorsIndividually(const std_msgs::msg::Float32MultiArray::SharedPtr msg) {
+
+      _lastCmd = this->get_clock()->now();
+
+      if(_mc.size() == 3) {
+        
+        float wfront[2] = {msg->data[0], msg->data[1]};
+        float wmiddle[2] = {msg->data[2], msg->data[3]};
+        float wback[2] = {msg->data[4], msg->data[5]};
+
+        _mc[0]->setRPM(wfront);
+        _mc[1]->setRPM(wmiddle);
+        _mc[2]->setRPM(wback);
+
+        if (_verbosity) {
+          //std::cout << "#EduDrive Setting RPM for drive" << i << " to " << w[0] << " " << w[1] << std::endl;
+          RCLCPP_INFO_STREAM(this->get_logger(), "#EduDrive Setting RPM for drive" << 0 << " to " << wfront[0] << " " << wfront[1]);
+          RCLCPP_INFO_STREAM(this->get_logger(), "#EduDrive Setting RPM for drive" << 1 << " to " << wmiddle[0] << " " << wmiddle[1]);
+          RCLCPP_INFO_STREAM(this->get_logger(), "#EduDrive Setting RPM for drive" << 2 << " to " << wback[0] << " " << wback[1]);
+        }
+      }
+
     }
 
     void EduDrive::receiveCAN()

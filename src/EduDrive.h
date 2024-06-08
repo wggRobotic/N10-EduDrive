@@ -75,6 +75,8 @@ public:
      */
     void velocityCallback(const geometry_msgs::msg::Twist::SharedPtr cmd);
 
+    void controlMotorsIndividually(const std_msgs::msg::Float32MultiArray::SharedPtr msg);
+
     /**
      * @brief 
      */
@@ -95,6 +97,7 @@ private:
     // Input topics / services
     rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr           _subJoy;
     rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr       _subVel;
+    rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr _subMotorVel;
     rclcpp::Service<std_srvs::srv::SetBool>::SharedPtr               _srvEnable;
 
     // Data available from motor controllers

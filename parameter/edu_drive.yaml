@@ -1,7 +1,7 @@
 /**:
   ros__parameters:
     usingPowerManagementBoard: true
-    verbosity: false
+    verbosity: true
     canInterface: CAN2
     frequencyScale: 32
     inputWeight: 0.2
