@@ -15,7 +15,7 @@ find_package(std_srvs REQUIRED)
 
 add_executable(${PROJECT_NAME}_node src/edu_drive_node.cpp src/EduDrive.cpp src/MotorController.cpp src/RPiAdapterBoard.cpp src/PowerManagementBoard.cpp src/can/canprotocol.cpp src/can/SocketCAN.cpp src/can/SocketCANObserver.cpp)
 
-ament_target_dependencies(edu_drive_ros2_node sensor_msgs std_srvs rclcpp)
+ament_target_dependencies(n10_edu_drive_ros2_node sensor_msgs std_srvs rclcpp)
 
 install(
   DIRECTORY
@@ -25,7 +25,7 @@ install(
 )
 
 install(TARGETS
-  edu_drive_ros2_node
+  n10_edu_drive_ros2_node
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
