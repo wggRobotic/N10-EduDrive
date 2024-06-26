@@ -15,7 +15,7 @@
 namespace edu
 {
 
-    EduDrive::EduDrive() : Node("edu_drive_node")
+    EduDrive::EduDrive() : Node("n10_edu_drive_node")
     {
 
     }
