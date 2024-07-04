@@ -42,7 +42,7 @@ namespace edu
         _subJoy     = this->create_subscription<sensor_msgs::msg::Joy>("joy", 1, std::bind(&EduDrive::joyCallback, this, std::placeholders::_1));
         _subVel     = this->create_subscription<geometry_msgs::msg::Twist>("vel/teleop", 10, std::bind(&EduDrive::velocityCallback, this, std::placeholders::_1));
         _subMotorVel= this->create_subscription<std_msgs::msg::Float32MultiArray>("/n10/motor_vel", 10, std::bind(&EduDrive::controlMotorsIndividually, this, std::placeholders::_1));
-        _srvEnable  = this->create_service<std_srvs::srv::SetBool>("eduard/enable", std::bind(&EduDrive::enableCallback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+        _srvEnable  = this->create_service<std_srvs::srv::SetBool>("enable", std::bind(&EduDrive::enableCallback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 
         // Publisher of motor shields
         _pubEnabled = this->create_publisher<std_msgs::msg::ByteMultiArray>("enabled", 1);
