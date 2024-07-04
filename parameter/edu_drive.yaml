@@ -1,6 +1,5 @@
 /**:
   ros__parameters:
-    #kinematics are now processed in translator
     usingPowerManagementBoard: true
     verbosity: true
     canInterface: CAN2
@@ -8,49 +7,49 @@
     inputWeight: 0.2
     maxPulseWidth: 100
     timeout: 300
-    kp: 0.4
-    ki: 4.0
+    kp: 0.2
+    ki: 3.1
     kd: 0.0
     antiWindup: 1
     responseMode: 0
-    
+
     controllers: 3
-    
+
     controller0:
       canID: 0
-      gearRatio: 70.0
-      encoderRatio: 64.0
-      rpmMax: 140.0
+      gearRatio: 44.0
+      encoderRatio: 2048.0
+      rpmMax: 124.0
       invertEnc: 1
       drive0:
         channel: 0
-        kinematics: [0.0, 0.0, 0.0]
+        kinematics: [-20.0, 0.0, -6.1]
       drive1:
         channel: 1
-        kinematics: [0.0, 0.0, 0.0]
-  
+        kinematics: [20.0, 0.0, -6.1]
+
     controller1:
       canID: 1
-      gearRatio: 70.0
-      encoderRatio: 64.0
-      rpmMax: 140.0
-      invertEnc: 0
+      gearRatio: 44.0
+      encoderRatio: 2048.0
+      rpmMax: 124.0
+      invertEnc: 1
       drive0:
         channel: 0
-        kinematics: [0.0, 0.0, 0.0]
+        kinematics: [-20.0, 0.0, -6.1]
       drive1:
         channel: 1
-        kinematics: [0.0, 0.0, 0.0]
+        kinematics: [20.0, 0.0, -6.1]
 
     controller2:
       canID: 2
-      gearRatio: 70.0
-      encoderRatio: 64.0
-      rpmMax: 140.0
-      invertEnc: 0
+      gearRatio: 44.0
+      encoderRatio: 2048.0
+      rpmMax: 124.0
+      invertEnc: 1
       drive0:
         channel: 0
-        kinematics: [0.0, 0.0, 0.0]
+        kinematics: [-20.0, 0.0, -6.1]
       drive1:
         channel: 1
-        kinematics: [0.0, 0.0, 0.0]
+        kinematics: [20.0, 0.0, -6.1]
