@@ -244,9 +244,9 @@ namespace edu
 
       if(_mc.size() == 3) {
         
-        float wfront[2] = {-msg->data[0], msg->data[1]};
-        float wmiddle[2] = {-msg->data[2], msg->data[3]};
-        float wback[2] = {-msg->data[4], msg->data[5]};
+        float wfront[2] = {-msg->data[1], msg->data[0]};
+        float wmiddle[2] = {-msg->data[3], msg->data[2]};
+        float wback[2] = {-msg->data[5], msg->data[4]};
 
         _mc[0]->setRPM(wfront);
         _mc[1]->setRPM(wmiddle);
